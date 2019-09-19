@@ -18,3 +18,9 @@ app.get('/status',(req, res) => {
         message: 'hello world !'
     })
 })
+
+app.post('/register', (req, res) => {
+    res.send({
+        message : `Hello ${req.body.email} been register.Have Fun`
+    })
+})
