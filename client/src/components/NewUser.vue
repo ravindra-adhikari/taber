@@ -21,10 +21,11 @@
                         name="password"
                         label="Password"
                         id="password"
-                        :type= "password"
+                       type = password
                         v-model="password"
                     ></v-text-field>
-                    <v-btn rounded color="primary" dark>Register Now !</v-btn>
+                    <div class="error" v-html="error"></div>
+                    <v-btn rounded color="primary" dark @click="registerUser">Register Now !</v-btn>
                 </v-form>
             </v-card-text>
             </v-card>
@@ -34,14 +35,32 @@
 </template>
 
 <script>
+import AuthService from '@/services/AuthService'
 export default {
     name: 'NewUser',
     data () {
         return{
             email: 'me@domain.com',
-            password: 'password'
+            password: 'password',
+            error: ''
         }
-    }
+    },
+    methods: {
+        
+        async registerUser(){
+          try{
+            const response = await AuthService.register({
+                email: this.email,
+                password: this.password
+            })
+            console.log(response.data)
+          } catch (err){
+              console.log(`bummer`);
+          }
+        }
+
+
+    },
 
 }
 </script>

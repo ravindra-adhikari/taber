@@ -1,9 +1,9 @@
-console.log(`hello form server`);
-
 const express = require('express')
 const cors = require ('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const {sequelize} = require('./models')
+const config = require('./config/config')
 
 const app = express()
 
@@ -11,16 +11,10 @@ app.use(morgan('combine'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.listen(process.env.PORT || 5000)
+require ('./routes')(app)
 
-app.get('/status',(req, res) => {
-    res.send({
-        message: 'hello world !'
-    })
-})
-
-app.post('/register', (req, res) => {
-    res.send({
-        message : `Hello ${req.body.email} been register.Have Fun`
-    })
+sequelize.sync()
+.then(() => {
+    app.listen(process.env.PORT || 5000)
+    console.log(`Server strated on port ${config.port} ` )
 })
