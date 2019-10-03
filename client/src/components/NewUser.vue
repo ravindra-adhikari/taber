@@ -1,11 +1,11 @@
 <template>
-  <v-container grid-list-xs>
+  <v-contain>
     <v-layout>
-        <v-flex>
+        <v-flex xs6 offset-xs3>
             <v-card>
-            <v-toolbar flat>
-                <v-toolbar-title>
-                    Register
+            <v-toolbar flat dark class="indigo darken-1">
+                <v-toolbar-title >
+                Register
                 </v-toolbar-title>
 
             </v-toolbar>
@@ -24,14 +24,14 @@
                        type = password
                         v-model="password"
                     ></v-text-field>
-                    <div class="error" v-html="error"></div>
-                    <v-btn rounded color="primary" dark @click="registerUser">Register Now !</v-btn>
+                    <div class="red white--text error" v-html="error" v-if="error"></div>
+                    <v-btn depressed dark @click="registerUser" class="indigo darken-1">Register Now !</v-btn>
                 </v-form>
             </v-card-text>
             </v-card>
         </v-flex>
     </v-layout>
-  </v-container>
+  </v-contain>
 </template>
 
 <script>
@@ -56,6 +56,7 @@ export default {
             console.log(response.data)
           } catch (err){
               console.log(`bummer`);
+              this.error = err.response.data.error
           }
         }
 
@@ -66,5 +67,8 @@ export default {
 </script>
 
 <style>
-
+.error{
+    padding: 5px;
+    margin-bottom: 10px;
+}
 </style>
