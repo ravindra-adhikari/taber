@@ -3,8 +3,8 @@
     <v-app>
       <page-header/>   
       <v-container fluid>
-        <v-content>        
-      <router-view />     
+        <v-content sm6 offset-sm-3>        
+          <router-view />     
       </v-content> 
       </v-container> 
       
@@ -31,13 +31,17 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+a{
+  text-decoration: none;
+}
 #nav {
   padding: 30px;
   a {
     font-weight: bold;
     text-decoration: none;
+    color: #3a2488;
     &.router-link-exact-active {
-      color: #42b983;
+    color:#fff;
     }
   }
 }

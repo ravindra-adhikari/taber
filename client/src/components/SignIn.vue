@@ -1,7 +1,6 @@
 <template>
- 
-            <v-card>
 
+            <v-card>
             <v-card-text>
                 <v-form>
                     <v-text-field
@@ -18,10 +17,11 @@
                         v-model="password"
                     ></v-text-field>
                     <div class="red white--text error" v-html="error" v-if="error"></div>
-                    <v-btn depressed dark @click="registerUser" class="indigo darken-1">Register Now !</v-btn>
+                    <v-btn depressed dark @click="registerUser" class="indigo darken-1">Login</v-btn>
                 </v-form>
             </v-card-text>
             </v-card>
+
 </template>
 
 <script>

@@ -8,7 +8,7 @@ const opts = {
         themes:{
             light:{
                 primary:'#3939ab',
-                anchor : '#fff',
+                anchor : '#3939ab',
                 toolbarTitle : '#fff',
             }
         }
