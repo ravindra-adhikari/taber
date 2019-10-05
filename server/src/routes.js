@@ -6,9 +6,7 @@ module.exports = (app) => {
     AuthControllerPolicy.register,
     AuthController.register
     )
-    app.get('/status', (req , res) => {
-       res.send({
-           message : "server is running"
-       })
-    })
+    app.post('/login',
+    AuthController.login
+    )
 } 

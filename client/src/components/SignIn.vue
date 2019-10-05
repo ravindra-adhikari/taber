@@ -17,7 +17,7 @@
                         v-model="password"
                     ></v-text-field>
                     <div class="red white--text error" v-html="error" v-if="error"></div>
-                    <v-btn depressed dark @click="registerUser" class="indigo darken-1">Login</v-btn>
+                    <v-btn depressed dark @click="signIn" class="indigo darken-1">Login</v-btn>
                 </v-form>
             </v-card-text>
             </v-card>
@@ -37,9 +37,9 @@ export default {
     },
     methods: {
         
-        async registerUser(){
+        async signIn(){
           try{
-            const response = await AuthService.register({
+            const response = await AuthService.login({
                 email: this.email,
                 password: this.password
             })

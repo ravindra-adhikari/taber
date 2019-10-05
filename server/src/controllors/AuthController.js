@@ -13,6 +13,33 @@ module.exports = {
                 error: `This email "${req.body.email}" account is already in use. `
             })
         }
-        
+    },
+    async login(req, res) {
+        try {
+            const {email, password} = req.body
+            const user = await User.fondOne({
+                where: {
+                    email: email
+                }
+            })
+            if(!user){
+                res.status(403).send({
+                    error: "This login informatoin is not correct"
+                })
+            }
+                const isPasswordVaild = password === user.password
+
+                if(!isPasswordVaild){
+                    res.status(403).send({
+                        error: "This login informatoin is not correct"
+                    })
+                }
+            const userJson = user.toJSON()
+            res.send({userJson})
+        } catch (error) {
+            res.status(500).send({
+                error : "Some error has happen, please try again."
+            })
+        }
     }
 }
