@@ -10,6 +10,7 @@ if (config.production) {
   sequelize = new Sequelize(process.env[config.production], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
+  console.log(`its ${env} environment db: ${config.database}` );
 }
 
 sequelize

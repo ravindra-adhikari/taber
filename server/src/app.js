@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const {sequelize} = require('./models')
 const config = require('./config/config')
+const jwt = require ('jsonwebtoken')
 
 const app = express()
 

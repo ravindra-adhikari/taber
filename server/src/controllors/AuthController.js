@@ -1,4 +1,16 @@
 const {User} = require('../models')
+const jwt = require('jsonwebtoken')
+const env = process.env.NODE_ENV || 'development'
+const config = require ('../config/config')[env]
+
+
+function jwtSignUser (user) {
+    console.log(`assigning token`)
+    const ONE_DAY = 60 * 60 * 24 
+    return jwt.sign(user, config.jwtSecret, {
+        expiresIn: ONE_DAY
+    })
+}
 
 module.exports = {
      async register (req, res) {
@@ -17,25 +29,30 @@ module.exports = {
     async login(req, res) {
         try {
             const {email, password} = req.body
-            const user = await User.fondOne({
+            console.log(email + " " +password);
+            const user = await User.findOne({
                 where: {
                     email: email
                 }
             })
             if(!user){
                 res.status(403).send({
-                    error: "This login informatoin is not correct"
+                    error: "This user informatoin is not correct"
                 })
             }
                 const isPasswordVaild = password === user.password
 
                 if(!isPasswordVaild){
                     res.status(403).send({
-                        error: "This login informatoin is not correct"
+                        error: "This password informatoin is not correct"
                     })
                 }
             const userJson = user.toJSON()
-            res.send({userJson})
+            console.log(`login in `)
+            res.send({
+                user:userJson,
+                token: jwtSignUser(userJson)
+            })
         } catch (error) {
             res.status(500).send({
                 error : "Some error has happen, please try again."

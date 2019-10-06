@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports ={
     port:5000,
     development: {
@@ -5,8 +6,9 @@ module.exports ={
         user: process.env.DB_USER || 'taberman',
         password: process.env.DB_PASS || 'traberman',
         dialect: process.env.DIALECT || 'sqlite',
-        stroage: './tabber.sqlite',
-        option: {
+        jwtSecret: process.env.JWT_SECRET || 'secret',
+        options: {
+            stroage: path.resolve(__dirname, '../../tabber.sqlite'),
             host: process.env.HOST || 'localhost',
         }
     },
@@ -15,9 +17,12 @@ module.exports ={
         user: process.env.DB_USER || 'taberman',
         password: process.env.DB_PASS || 'traberman',
         dialect: process.env.DIALECT || 'sqlite',
-        stroage: './tabber.sqlite',
+        stroage: '../../tabber.sqlite',
         option: {
             host: process.env.HOST || 'localhost',
+        },
+        authentication: {
+            jwtSecret: process.env.JWT_SECRET ||  'secret'
         }
     },
 
