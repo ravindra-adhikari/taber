@@ -7,8 +7,8 @@ module.exports ={
         password: process.env.DB_PASS || 'traberman',
         dialect: process.env.DIALECT || 'sqlite',
         jwtSecret: process.env.JWT_SECRET || 'secret',
+        storage: path.resolve(__dirname, '../../tabber.sqlite'),
         options: {
-            stroage: path.resolve(__dirname, '../../tabber.sqlite'),
             host: process.env.HOST || 'localhost',
         }
     },

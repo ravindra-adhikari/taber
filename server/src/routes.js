@@ -9,4 +9,7 @@ module.exports = (app) => {
     app.post('/login',
     AuthController.login
     )
+    app.get('/user',
+    AuthController.showAllUser
+    )
 } 

@@ -35,13 +35,14 @@ module.exports = {
                     email: email
                 }
             })
+            console.log(`user is ${user}`);
             if(!user){
                 res.status(403).send({
                     error: "This user informatoin is not correct"
                 })
             }
-                const isPasswordVaild = password === user.password
-
+                const isPasswordVaild = await user.comparePassword(password)
+                console.log( 'is passwordvaild: '+ isPasswordVaild );
                 if(!isPasswordVaild){
                     res.status(403).send({
                         error: "This password informatoin is not correct"
@@ -58,5 +59,11 @@ module.exports = {
                 error : "Some error has happen, please try again."
             })
         }
+    },
+    showAllUser(req, res){
+       User.findAll()
+       .then(users => res.send(users) )
+       
     }
+
 }
