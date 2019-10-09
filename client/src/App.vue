@@ -24,6 +24,9 @@ export default {
 }
 </script>
 <style lang="scss">
+*{
+  text-transform: none;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,6 +39,7 @@ a{
 }
 #nav {
   padding: 30px;
+  text-transform: capitalize;
   a {
     font-weight: bold;
     text-decoration: none;
