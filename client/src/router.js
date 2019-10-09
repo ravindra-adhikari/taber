@@ -32,6 +32,6 @@ export default new Router({
       component: function() {
         return import(/* webpackChunkName: "login" */ "./views/Login.vue");
       }
-    }
+    },
   ]
 });

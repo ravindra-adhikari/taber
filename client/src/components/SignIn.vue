@@ -2,22 +2,20 @@
 
             <v-card>
             <v-card-text>
-                <v-form>
+                <v-form name="login-form"> 
                     <v-text-field
                         name="email"
                         label="email"
-                        id="email"
                         v-model="email"
                     ></v-text-field>
                     <v-text-field
                         name="password"
                         label="Password"
-                        id="password"
                        type = password
                         v-model="password"
                     ></v-text-field>
                     <div class="red white--text error" v-html="error" v-if="error"></div>
-                    <v-btn depressed dark @click="signIn" class="indigo darken-1">Login</v-btn>
+                    <v-btn depressed dark @click="login" class="indigo darken-1">Login</v-btn>
                 </v-form>
             </v-card-text>
             </v-card>
@@ -27,30 +25,28 @@
 <script>
 import AuthService from '@/services/AuthService'
 export default {
-    name: 'NewUser',
+    name: 'SignIn',
     data () {
         return{
             email: 'me@domain.com',
             password: 'password',
-            error: ''
+            error: null
         }
     },
     methods: {
         
-        async signIn(){
+        async login(){
           try{
             const response = await AuthService.login({
                 email: this.email,
                 password: this.password
             })
             console.log(response.data)
-          } catch (err){
+          } catch (error){
               console.log(`bummer`);
-              this.error = err.response.data.error
+              this.error = error.response.error
           }
         }
-
-
     },
 
 }

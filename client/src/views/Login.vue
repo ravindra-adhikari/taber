@@ -8,10 +8,10 @@
         grow
       >
       <v-tabs-slider color="indigo lighten-4"></v-tabs-slider>
-        <v-tab>
-          Reister
+        <v-tab class="white--text">
+          Register
         </v-tab>
-        <v-tab>
+        <v-tab class="white--text">
           Login
         </v-tab>
       </v-tabs>

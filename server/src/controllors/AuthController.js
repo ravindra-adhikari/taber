@@ -18,12 +18,17 @@ module.exports = {
             console.log(`lets create ${req.body.email}`)
             const user =  await User.create(req.body)
             console.log(`${req.body.email} its created`);
-            res.send( user.toJSON() )
+            const userJson = user.toJSON()
+            res.send({
+                user:userJson,
+                token: jwtSignUser(userJson)
+            })
         } catch (err) {
             //email already exit
             res.status(400).send({
                 error: `This email "${req.body.email}" account is already in use. `
             })
+            return
         }
     },
     async login(req, res) {
@@ -40,6 +45,7 @@ module.exports = {
                 res.status(403).send({
                     error: "This user informatoin is not correct"
                 })
+                return
             }
                 const isPasswordVaild = await user.comparePassword(password)
                 console.log( 'is passwordvaild: '+ isPasswordVaild );
@@ -47,6 +53,7 @@ module.exports = {
                     res.status(403).send({
                         error: "This password informatoin is not correct"
                     })
+                    return
                 }
             const userJson = user.toJSON()
             console.log(`login in `)
@@ -58,6 +65,7 @@ module.exports = {
             res.status(500).send({
                 error : "Some error has happen, please try again."
             })
+            return
         }
     },
     showAllUser(req, res){

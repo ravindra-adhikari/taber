@@ -3,19 +3,22 @@
             <v-card>
 
             <v-card-text>
-                <v-form>
+                <v-form name="register-form"
+                browser-autocomplete="off" 
+                >
                     <v-text-field
                         name="email"
                         label="email"
                         id="email"
                         v-model="email"
-                    ></v-text-field>
+                    >
+                        
+                    </v-text-field>
                     <v-text-field
-                        name="password"
                         label="Password"
-                        id="password"
-                       type = password
+                        type = password
                         v-model="password"
+                        autocomplete = "new-password"
                     ></v-text-field>
                     <div class="red white--text error" v-html="error" v-if="error"></div>
                     <v-btn depressed dark @click="registerUser" class="indigo darken-1">Register Now !</v-btn>
@@ -30,8 +33,8 @@ export default {
     name: 'NewUser',
     data () {
         return{
-            email: 'me@domain.com',
-            password: 'password',
+            email: '',
+            password: '',
             error: ''
         }
     },
